@@ -1,0 +1,71 @@
+body {
+  font-family: "Baloo Tamma 2", cursive;
+  margin: 20px 20px;
+  color: #3b6978;
+}
+.scontainer {
+  background: #84a9ac;
+  border: 1px solid #204051;
+  border-radius: 10%;
+  max-width: 720px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 60px;
+  position: relative;
+}
+form {
+  padding: 30px 10px;
+  position: relative;
+  display: flex;
+}
+.button {
+  transition: all 150ms ease-in-out;
+  background: #3b6978;
+  color: #84a9ac;
+  border-radius: 0;
+  border: none;
+}
+.button :hover {
+  background: #84a9ac;
+  cursor: pointer;
+}
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+}
+h2 {
+  font-size: 26px;
+}
+h3 {
+  font-size: 26px;
+}
+.herenow {
+  text-align: center;
+  position: relative;
+  padding-top: 10px;
+}
+.datetime {
+  text-align: center;
+  right: 20px;
+  width: 200px;
+  position: relative;
+  line-height: 20px;
+}
+.conditions {
+  text-align: center;
+  padding-top: 60px;
+  line-height: 35px;
+}
+.weather-week {
+  padding-top: 60px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+a {
+  color: #3b6978;
+  transition: all 150ms ease-in-out;
+}
+a :hover {
+  cursor: pointer;
+}
