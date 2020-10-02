@@ -112,7 +112,7 @@ function updateCity(data) {
   let cityName = document.querySelector(".city");
   cityName.innerHTML = data.name;
   let cityWeather = document.querySelector("h2");
-  cityWeather.innerHTML = data.weather[0].main;
+  cityWeather.innerHTML = data.weather[0].description;
   let cityTempC = document.querySelector(".temperature");
   cityTempC.innerHTML = Math.round(data.main.temp);
   temperature = data.main.temp;
@@ -124,8 +124,15 @@ function updateIcon(data) {
   let imgCode = {
     "04n": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
     "10d": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+    "10n": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
     "04d": "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
     "03n": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    "03d": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    "01d": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+    "01n": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+    "09n": "https://ssl.gstatic.com/onebox/weather/64/rain_heavy.png",
+    "02d": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    "11d": "https://ssl.gstatic.com/onebox/weather/64/thunderstorms.png",
   };
   let cityIcon = document.querySelector(".main-icon");
   cityIcon.src = imgCode[data.weather[0].icon];
@@ -134,6 +141,9 @@ function updateIcon(data) {
 function updateInfo(data) {
   let precipitationUpdate = document.querySelector(".precipitation");
   precipitationUpdate.innerHTML = data.rain;
+  if (".precipitation" === undefined) {
+    precipitationUpdate = 0;
+  }
   let humidityUpdate = document.querySelector(".humidity");
   humidityUpdate.innerHTML = data.main.humidity;
   let windUpdate = document.querySelector(".wind");
