@@ -45,15 +45,7 @@ updateDayOfWeek.innerHTML = `${day}`;
 updateMonthDayYear.innerHTML = `${month} ${date} ${year}`;
 updateTimeOfDay.innerHTML = `${hours}:${minutes}`;
 
-function updateCity(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#searchCity");
-  let updateCity = document.querySelector("h1");
-  updateCity.innerHTML = searchInput.value;
-}
-let form = document.querySelector("#searchform");
-form.addEventListener("submit", updateCity);
-
+//form.addEventListener("submit", updateCity);
 let temperature = 26;
 let tempF = Math.round((temperature * 9) / 5 + 32);
 let tempC = Math.round(temperature);
@@ -75,15 +67,72 @@ fahrenheitLink.addEventListener("click", changeF);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeC);
 
+//not working - see getWeatherCityData
 function showWeather(response) {
-  document.querySelector(updateCity).innerHTML = reponse.data.name;
+  document.querySelector(".city").innerHTML = reponse.data.name;
   document.querySelector(".temperature").innerHTML = Math.round(
     response.data.main.temp
   );
 }
 
-let city = updateCity;
-let apiKey = "46adf1c76d37271c2b55ccf797bdce14";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metrics`;
+// Mika
+let form = document.querySelector("#searchform");
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  getWeatherCityData();
+});
+form.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    getWeatherCityData();
+  }
+});
 
-axios.get(apiUrl).then(showWeather);
+function getWeatherCityData() {
+  let city = document.querySelector("#searchCity").value;
+  let apiKey = "46adf1c76d37271c2b55ccf797bdce14";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  axios
+    .get(apiUrl)
+    .then(setWeatherCityData)
+    .catch(function (error) {
+      if (!error.response) {
+        console.log(error);
+        return;
+      }
+      let status = error.response.status;
+      if (status === 404) {
+        alert("LA VILLE DOES NOT EXIST BORDEL");
+        return;
+      }
+      alert("Something went wrong");
+    });
+}
+
+function setWeatherCityData({ data }) {
+  updateCity(data);
+  updateIcon(data);
+  console.log(data);
+}
+
+function updateCity(data) {
+  let cityName = document.querySelector(".city");
+  cityName.innerHTML = data.name;
+  let cityWeather = document.querySelector("h2");
+  cityWeather.innerHTML = data.weather[0].main;
+  let cityTempC = document.querySelector(".temperature");
+  cityTempC.innerHTML = Math.round(data.main.temp);
+  temperature = data.main.temp;
+  tempF = Math.round((temperature * 9) / 5 + 32);
+  tempC = Math.round(temperature);
+}
+
+function updateIcon(data) {
+  let imgCode = {
+    "04n": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    "03n": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+  };
+  let cityIcon = document.querySelector(".main-icon");
+  cityIcon.src = imgCode[data.weather[0].icon];
+}
