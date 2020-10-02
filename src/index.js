@@ -149,3 +149,9 @@ function updateInfo(data) {
   let windUpdate = document.querySelector(".wind");
   windUpdate.innerHTML = Math.round(data.wind.speed);
 }
+
+function getFiveDaysWeather() {
+  let city = document.querySelector("#searchCity").value;
+  let apiKey = "46adf1c76d37271c2b55ccf797bdce14";
+  let apiUrlTwo = `api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=7&appid=${apiKey}&units=metric`;
+}
