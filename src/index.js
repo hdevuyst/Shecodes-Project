@@ -141,11 +141,11 @@ function updateIcon(data) {
 function updateInfo(data) {
   let precipitationUpdate = document.querySelector(".precipitation");
   precipitationUpdate.innerHTML = data.rain;
-  if (".precipitation" === undefined) {
+  if (data.rain === undefined) {
     precipitationUpdate = 0;
   }
   let humidityUpdate = document.querySelector(".humidity");
   humidityUpdate.innerHTML = data.main.humidity;
   let windUpdate = document.querySelector(".wind");
-  windUpdate.innerHTML = data.wind.speed;
+  windUpdate.innerHTML = Math.round(data.wind.speed);
 }
