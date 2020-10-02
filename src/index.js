@@ -67,14 +67,6 @@ fahrenheitLink.addEventListener("click", changeF);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeC);
 
-//not working - see getWeatherCityData
-function showWeather(response) {
-  document.querySelector(".city").innerHTML = reponse.data.name;
-  document.querySelector(".temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
-}
-
 // Mika
 let form = document.querySelector("#searchform");
 form.addEventListener("submit", function (event) {
@@ -113,7 +105,6 @@ function getWeatherCityData() {
 function setWeatherCityData({ data }) {
   updateCity(data);
   updateIcon(data);
-  console.log(data);
 }
 
 function updateCity(data) {
@@ -131,8 +122,19 @@ function updateCity(data) {
 function updateIcon(data) {
   let imgCode = {
     "04n": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
-    "03n": "https://ssl.gstatic.com/onebox/weather/64/sunny.png",
+    "10d": "https://ssl.gstatic.com/onebox/weather/64/rain_light.png",
+    "04d": "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
+    "03n": "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
   };
   let cityIcon = document.querySelector(".main-icon");
   cityIcon.src = imgCode[data.weather[0].icon];
+}
+
+function updateInfo(data) {
+  let precipitationUpdate = document.querySelector(".precipitation");
+  precipitationUpdate.innerHTML = data.rain;
+  let humidityUpdate = document.querySelector(".humidity");
+  humidityUpdate.innerHTML = data.main.humidity;
+  let windUpdate = document.querySelector(".wind");
+  windUpdate.innerHTML = data.wind.speed;
 }
