@@ -1,3 +1,4 @@
+// Update current Date
 let now = new Date();
 let updateDayOfWeek = document.querySelector(".dayofweek");
 let updateMonthDayYear = document.querySelector(".monthdayyear");
@@ -46,6 +47,8 @@ updateMonthDayYear.innerHTML = `${month} ${date} ${year}`;
 updateTimeOfDay.innerHTML = `${hours}:${minutes}`;
 
 //form.addEventListener("submit", updateCity);
+
+// Change temp C to F
 let temperature = 26;
 let tempF = Math.round((temperature * 9) / 5 + 32);
 let tempC = Math.round(temperature);
@@ -67,7 +70,7 @@ fahrenheitLink.addEventListener("click", changeF);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", changeC);
 
-// Mika
+// Search form JS
 let form = document.querySelector("#searchform");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -80,6 +83,7 @@ form.addEventListener("keydown", function (event) {
   }
 });
 
+// API Update current weather & city info
 function getWeatherCityData() {
   let city = document.querySelector("#searchCity").value;
   let apiKey = "46adf1c76d37271c2b55ccf797bdce14";
@@ -140,7 +144,8 @@ function updateIcon(data) {
 
 function updateInfo(data) {
   let precipitationUpdate = document.querySelector(".precipitation");
-  precipitationUpdate.innerHTML = data.rain;
+  precipitationUpdate.innerHTML = data.rain[`1h`];
+  console.log(data.rain[`1h`]);
   if (data.rain === undefined) {
     precipitationUpdate = 0;
   }
@@ -150,8 +155,37 @@ function updateInfo(data) {
   windUpdate.innerHTML = Math.round(data.wind.speed);
 }
 
+// Update 5 Days current city
 function getFiveDaysWeather() {
   let city = document.querySelector("#searchCity").value;
   let apiKey = "46adf1c76d37271c2b55ccf797bdce14";
-  let apiUrlTwo = `api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=7&appid=${apiKey}&units=metric`;
+  let apiUrlTwo = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=5&appid=${apiKey}&units=metric`;
 }
+
+axios
+  .get(apiUrlTwo)
+  .then(setFiveDaysWeather)
+  .catch(function (error) {
+    if (!error.response) {
+      console.log(error);
+      return;
+    }
+    let status = error.response.status;
+    if (status === 404) {
+      alert("LA VILLE DOES NOT EXIST BORDEL");
+      return;
+    }
+    alert("Something went wrong");
+  });
+
+function setFiveDaysWeather({ data }) {
+  updateFiveDays(data);
+}
+
+function updateFiveDays(data) {
+  let fiveTemp = document.querySelector(".card-temp");
+  fiveTemp.innerHTML = Math.round(data.main.temp);
+}
+
+let cityTempC = document.querySelector(".temperature");
+cityTempC.innerHTML = Math.round(data.main.temp);
