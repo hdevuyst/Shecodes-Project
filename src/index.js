@@ -105,6 +105,7 @@ function getWeatherCityData() {
 function setWeatherCityData({ data }) {
   updateCity(data);
   updateIcon(data);
+  updateInfo(data);
 }
 
 function updateCity(data) {
