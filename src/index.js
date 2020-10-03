@@ -144,10 +144,12 @@ function updateIcon(data) {
 
 function updateInfo(data) {
   let precipitationUpdate = document.querySelector(".precipitation");
-  precipitationUpdate.innerHTML = data.rain[`1h`];
-  console.log(data.rain[`1h`]);
+  if (data.rain) {
+    precipitationUpdate.innerHTML = data.rain[`1h`];
+    console.log(data.rain[`1h`]);
+  }
   if (data.rain === undefined) {
-    precipitationUpdate = 0;
+    precipitationUpdate.innerHTML = 0;
   }
   let humidityUpdate = document.querySelector(".humidity");
   humidityUpdate.innerHTML = data.main.humidity;
@@ -159,33 +161,5 @@ function updateInfo(data) {
 function getFiveDaysWeather() {
   let city = document.querySelector("#searchCity").value;
   let apiKey = "46adf1c76d37271c2b55ccf797bdce14";
-  let apiUrlTwo = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=5&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=5&appid=${apiKey}&units=metric`;
 }
-
-axios
-  .get(apiUrlTwo)
-  .then(setFiveDaysWeather)
-  .catch(function (error) {
-    if (!error.response) {
-      console.log(error);
-      return;
-    }
-    let status = error.response.status;
-    if (status === 404) {
-      alert("LA VILLE DOES NOT EXIST BORDEL");
-      return;
-    }
-    alert("Something went wrong");
-  });
-
-function setFiveDaysWeather({ data }) {
-  updateFiveDays(data);
-}
-
-function updateFiveDays(data) {
-  let fiveTemp = document.querySelector(".card-temp");
-  fiveTemp.innerHTML = Math.round(data.main.temp);
-}
-
-let cityTempC = document.querySelector(".temperature");
-cityTempC.innerHTML = Math.round(data.main.temp);
