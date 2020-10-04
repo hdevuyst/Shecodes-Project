@@ -145,7 +145,7 @@ function updateIcon(data) {
 function updateInfo(data) {
   let precipitationUpdate = document.querySelector(".precipitation");
   if (data.rain) {
-    precipitationUpdate.innerHTML = data.rain[`1h`];
+    precipitationUpdate.innerHTML = data.rain[`1h`] * 100;
     console.log(data.rain[`1h`]);
   }
   if (data.rain === undefined) {
