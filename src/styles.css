@@ -69,3 +69,10 @@ a {
 a :hover {
   cursor: pointer;
 }
+.open-source {
+  font-family: "Baloo Tamma 2", cursive;
+  margin: 10px;
+  color: #3b6978;
+  text-align: center;
+  font-size: 12px;
+}

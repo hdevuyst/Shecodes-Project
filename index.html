@@ -18,95 +18,103 @@
     <title>Weather Project</title>
   </head>
   <body>
-    <div class="scontainer">
-      <div class="row">
-        <div class="col-sm">
-          <form id="searchform">
-            <input type="text" placeholder="Search City" id="searchCity" />
-            <input type="submit" value="search" class="button" />
-          </form>
+    <div class="container">
+      <div class="scontainer">
+        <div class="row">
+          <div class="col-sm">
+            <form id="searchform">
+              <input type="text" placeholder="Search City" id="searchCity" />
+              <input type="submit" value="search" class="button" />
+            </form>
+          </div>
+          <div class="col-sm datetime">
+            <p class="dayofweek">Wednesday</p>
+            <p class="monthdayyear">August 12th 2020</p>
+            <p class="timeofday">12:15pm</p>
+          </div>
         </div>
-        <div class="col-sm datetime">
-          <p class="dayofweek">Wednesday</p>
-          <p class="monthdayyear">August 12th 2020</p>
-          <p class="timeofday">12:15pm</p>
+        <div class="row">
+          <div class="col-sm herenow">
+            <h1 class="city">Toronto</h1>
+            <h2>Sunny</h2>
+            <h3>
+              <span class="temperature">26</span>
+              <a href="#" id="celsius-link">°C</a> |
+              <a href="#" id="fahrenheit-link">°F</a>
+            </h3>
+            <img
+              class="main-icon"
+              src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+              alt="sunny"
+              width="100"
+            />
+          </div>
+          <div class="col-sm conditions">
+            <div>Precipitation: <span class="precipitation"> 0 </span>mm</div>
+            <div>Humidity: <span class="humidity"> 43 </span> %</div>
+            <div>Wind: <span class="wind"> 11 </span> km/h</div>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm herenow">
-          <h1 class="city">Toronto</h1>
-          <h2>Sunny</h2>
-          <h3>
-            <span class="temperature">26</span>
-            <a href="#" id="celsius-link">°C</a> |
-            <a href="#" id="fahrenheit-link">°F</a>
-          </h3>
-          <img
-            class="main-icon"
-            src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-            alt="sunny"
-            width="100"
-          />
-        </div>
-        <div class="col-sm conditions">
-          <div>Precipitation: <span class="precipitation"> 0 </span>mm</div>
-          <div>Humidity: <span class="humidity"> 43 </span> %</div>
-          <div>Wind: <span class="wind"> 11 </span> km/h</div>
-        </div>
-      </div>
 
-      <div class="row weather-week">
-        <div class="col-sm">
-          <img
-            src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-            width="50"
-            alt="sunny"
-          />
-          <h5 class="card-title">Thursday</h5>
-          <p class="card-temp">18°C</p>
-          <p class="card-text">Sunny</p>
-        </div>
-        <div class="col-sm">
-          <img
-            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-            width="50"
-            alt="cloudy"
-          />
-          <h5 class="card-title">Friday</h5>
-          <p class="card-temp">18°C</p>
-          <p class="card-text">Partly Cloudy</p>
-        </div>
-        <div class="col-sm">
-          <img
-            src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-            alt="cloudy"
-            width="50"
-          />
-          <h5 class="card-title">Saturday</h5>
-          <p class="card-temp">18°C</p>
-          <p class="card-text">Partly Cloudy</p>
-        </div>
-        <div class="col-sm">
-          <img
-            src="https://ssl.gstatic.com/onebox/weather/64/rain_s_cloudy.png"
-            alt="Rainy"
-            width="50"
-          />
-          <h5 class="card-title">Sunday</h5>
-          <p class="card-temp">18°C</p>
-          <p class="card-text">Rainy</p>
-        </div>
-        <div class="col-sm">
-          <img
-            src="https://ssl.gstatic.com/onebox/weather/64/rain_s_cloudy.png"
-            alt="Rainy"
-            width="50"
-          />
-          <h5 class="card-title">Monday</h5>
-          <p class="card-temp">18°C</p>
-          <p class="card-text">Rainy</p>
+        <div class="row weather-week">
+          <div class="col-sm">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+              width="50"
+              alt="sunny"
+            />
+            <h5 class="card-title">Thursday</h5>
+            <p class="card-temp">18°C</p>
+            <p class="card-text">Sunny</p>
+          </div>
+          <div class="col-sm">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+              width="50"
+              alt="cloudy"
+            />
+            <h5 class="card-title">Friday</h5>
+            <p class="card-temp">18°C</p>
+            <p class="card-text">Partly Cloudy</p>
+          </div>
+          <div class="col-sm">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+              alt="cloudy"
+              width="50"
+            />
+            <h5 class="card-title">Saturday</h5>
+            <p class="card-temp">18°C</p>
+            <p class="card-text">Partly Cloudy</p>
+          </div>
+          <div class="col-sm">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/rain_s_cloudy.png"
+              alt="Rainy"
+              width="50"
+            />
+            <h5 class="card-title">Sunday</h5>
+            <p class="card-temp">18°C</p>
+            <p class="card-text">Rainy</p>
+          </div>
+          <div class="col-sm">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/rain_s_cloudy.png"
+              alt="Rainy"
+              width="50"
+            />
+            <h5 class="card-title">Monday</h5>
+            <p class="card-temp">18°C</p>
+            <p class="card-text">Rainy</p>
+          </div>
         </div>
       </div>
+      <p class="open-source">
+        <a href="https://github.com/hdevuyst/Shecodes-Project" target="_blank"
+          >Open-source code</a
+        >
+        , by Helene Devuyst
+      </p>
     </div>
     <script src="src/index.js"></script>
   </body>
