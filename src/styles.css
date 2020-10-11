@@ -1,6 +1,6 @@
 body {
   font-family: "Baloo Tamma 2", cursive;
-  margin: 20px 20px;
+  margin: 20px 0px;
   color: #3b6978;
 }
 .scontainer {
@@ -14,11 +14,31 @@ body {
   padding: 30px 60px;
   position: relative;
 }
+
+@media screen and (max-width: 768px) {
+  /* 1024px, 768px, 480px */
+  .scontainer {
+    border-radius: 10px;
+  }
+}
+
 form {
   padding: 30px 10px;
   position: relative;
   display: flex;
 }
+
+@media screen and (max-width: 768px) {
+  /* 1024px, 768px, 480px */
+  form {
+    display: none;
+  }
+}
+
+form input {
+  max-width: 130px;
+}
+
 .button {
   transition: all 150ms ease-in-out;
   background: #3b6978;
@@ -26,8 +46,8 @@ form {
   border-radius: 0;
   border: none;
 }
-.button :hover {
-  background: #84a9ac;
+.button:hover {
+  background: #204051;
   cursor: pointer;
 }
 h1 {
@@ -75,4 +95,17 @@ a :hover {
   color: #3b6978;
   text-align: center;
   font-size: 12px;
+}
+
+.geoloc-btn {
+  border: none;
+  background: none;
+  color: #3b6978;
+  transition: color 150ms;
+}
+.geoloc-btn:hover {
+  color: #204051;
+}
+.geoloc-btn:focus {
+  outline: none;
 }
