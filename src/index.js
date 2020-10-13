@@ -212,22 +212,22 @@ function createForecastNode(item) {
   let element = document.createElement("div");
   element.classList.add("col-sm");
 
+  let time = document.createElement("h5");
+  time.classList.add("card-title");
+  time.innerHTML = getTime(item.dt);
+
   let img = document.createElement("img");
   img.src = imgCode[item.weather[0].icon];
   img.width = 50;
   img.classList.add("forecast-icon");
   img.alt = "Sunny";
 
-  let time = document.createElement("h5");
-  time.classList.add("card-title");
-  time.innerHTML = getTime(item.dt);
-
   let temperature = document.createElement("p");
   temperature.classList.add("card-temp");
   temperature.innerHTML = `${Math.round(item.main.temp)}°`;
 
-  element.append(img);
   element.append(time);
+  element.append(img);
   element.append(temperature);
 
   container.append(element);
